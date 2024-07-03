@@ -1,0 +1,37 @@
+ANEXO 1: Modelo Básico de Simulación (una sola Pala con un solo destino)
+* Modelo : Simple Model Trucks Simulation
+*Plataforma : GPSS
+* Universidad Nacional de Ingeniería
+* Escuela Profesional de Ingeniería de Minas
+* Programado por Jorge Lozano Fernández
+******Functions**************************
+*****Variables*************
+INITIAL X$TNOREBIN,0
+INITIAL X$TNLEACH,0
+***************************
+
+GENERATE 0,0,0,4
+ADVANCE 120
+
+CARGAR TEST L C1,447068,FIN
+QUEUE QOREBIN
+SEIZE OREBIN
+DEPART QOREBIN
+ADVANCE 45 ; Tiempo de carga
+ASSIGN 1,148
+SAVEVALUE TNOREBIN+,P1
+RELEASE OREBIN
+ADVANCE 201
+QUEUE QLEACH
+SEIZE LEACH
+DEPART QLEACH
+ADVANCE 160.2 ; Tiempo de descarga
+ASSIGN 2,148
+SAVEVALUE TNLEACH+,P2
+
+RELEASE LEACH
+ADVANCE 225
+TRANSFER ,CARGAR
+FIN ADVANCE 200
+TERMINATE 1
+START 1
